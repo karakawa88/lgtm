@@ -6,6 +6,7 @@ def main():
         'stock': 1280
     };
     print(core.func(**dic))
+    print('CircleCIテスト')
     core.cli()
 
 if __name__ == '__main__':
