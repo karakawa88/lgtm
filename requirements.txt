@@ -1,0 +1,5 @@
+click>=7.*
+libpyka>=0.1.*
+Pillow>=8.*
+psycopg2>=2.*
+requests>=2.*
