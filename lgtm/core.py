@@ -9,4 +9,11 @@ def cli():
 def lgtm():
     pass
 
+def func(**kwargs):
+    ret = ''
+    for key, val in kwargs.items():
+        ret = ret + f'key={key}, value={val}\n'
+    return ret
+
+
 
