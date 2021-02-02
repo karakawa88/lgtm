@@ -8,6 +8,7 @@ def main():
     print(core.func(**dic))
     print('CircleCIテスト')
     print('CircleCIテスト PullRequestのテスト')
+    print('CircleCIテスト PullRequestテスト')
     core.cli()
 
 if __name__ == '__main__':
