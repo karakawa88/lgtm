@@ -34,14 +34,27 @@ jobs:
             - run:
                 command: |
                     mypy --config-file=mypy.ini lgtm
+    lint:
+        docker:
+            - image: circleci/python:3.8.5
+        steps:
+            - checkout
+            - restore_cache:
+                key: deps-{{ checksum "requirements.txt" }}
+            - run:
+                command: |
+                    flake8 --config flake8.ini lgtm
 workflows:
   version: 2
   all:
     jobs:
         - setup_dependencies
-        - thint:
+        - lint:
             requires:
                 - setup_dependencies
+        - thint:
+            requires:
+                - lint
         - test:
             requires:
                 - thint

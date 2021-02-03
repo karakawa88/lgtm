@@ -24,6 +24,7 @@ class LocalImage():
     @property
     def path(self) -> Path:
         return self.__path
+
     @path.setter
     def path(self, path: Path) -> None:
         self.__path = path
