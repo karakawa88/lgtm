@@ -1,19 +1,18 @@
 import click
 
 @click.command()
-def cli():
+@click.option('--message', '-m', default='LGTM',
+        show_default=True, help='画像に乗せるメッセージ')
+@click.argument('keyword')
+def cli(message, keyword):
     """LGTM画像生成プログラム"""
-    lgtm()
-    click.echo('LGTM')
+    lgtm(message, keyword)
+    print(f'message={message}, keyword={keyword}')
+#     click.echo('LGTM')
 
-def lgtm():
+def lgtm(message, keyword):
     pass
 
-def func(**kwargs):
-    ret = ''
-    for key, val in kwargs.items():
-        ret = ret + f'key={key}, value={val}\n'
-    return ret
 
 
 
