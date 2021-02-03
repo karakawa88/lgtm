@@ -9,7 +9,7 @@ class LgtmTest(unittest.TestCase):
         Raises:
             AssertionError テスト失敗
         """
-        self.assertIsNone(core.lgtm())
+        self.assertIsNone(core.lgtm('message', 'keyword'))
 
     def test_cli_params(self):
         """LGTMコマンドのオプションと引数がきちんと渡されているか確認。
@@ -18,8 +18,9 @@ class LgtmTest(unittest.TestCase):
         """
         message = 'LGTM'
         keyword = 'sample.jpg'
-        test_result = f'message={message}, keyword={keyword}'
+        test_result = f'message={message}, keyword={keyword}\n'
         runner = CliRunner()
         result = runner.invoke(core.cli, ['--message', message, keyword])
-        self.assertEqual(result.exit_code == 0 and result.output == test_result)
+        print(result.output)
+        self.assertTrue(result.exit_code == 0 and result.output == test_result)
 
