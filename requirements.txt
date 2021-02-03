@@ -4,4 +4,5 @@ Pillow>=8.*
 psycopg2>=2.*
 requests>=2.*
 mypy>=0.800
+flake8>=3.*
 
