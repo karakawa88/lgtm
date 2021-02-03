@@ -3,3 +3,5 @@ libpyka>=0.1.*
 Pillow>=8.*
 psycopg2>=2.*
 requests>=2.*
+mypy>=0.800
+
