@@ -8,7 +8,25 @@ from typing import IO, TextIO, BinaryIO
 import requests
 from pathlib import Path
 
-class LocalImage():
+from abc import ABCMeta, abstractmethod
+
+class AbstractImage(metaclass=ABCMeta):
+    """抽象クラス
+    Args:
+    """
+    def __init__(self) -> None:
+        pass
+
+    @abstractmethod
+    def get_image(self) -> BinaryIO:
+        """画像を取得して返す。
+        Returns:
+            BinaryIO: 画像のファイルオブジェクト
+        """
+        pass
+
+
+class LocalImage(AbstractImage):
     """ローカルなパスの画像を表すクラス
     Args:
         pathstr (str): 画像のパス文字列
