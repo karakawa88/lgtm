@@ -86,3 +86,27 @@ class RemoteImage(AbstractImage):
             raise ex
         return BytesIO(res.content)
 
+class _LoremFlickr(RemoteImage):
+    """キーワードをもとにネットから画像を取得する。
+    Args:
+        keyword (str): キーワード
+    """
+    LOREM_FLICKR_URL = 'https://loremflickr.com'
+    WIDTH = 1280
+    HEIGHT = 768
+
+    def __init__(self, keyword: str) -> None:
+        super().__init__(self._build_url(_LoremFlickr.LOREM_FLICKR_URL,
+            _LoremFlickr.WIDTH,
+            _LoremFlickr.HEIGHT,
+            keyword))
+
+    def _build_url(self, url: str,
+            width: int, height: int, keyword: str) -> str:
+        return (
+            f'{url}/{width}/{height}/{keyword}'
+        )
+
+
+KeywordImage = _LoremFlickr
+
