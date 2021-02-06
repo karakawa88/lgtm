@@ -7,8 +7,8 @@ from typing import IO, TextIO, BinaryIO
 
 import requests
 from pathlib import Path
-
 from abc import ABCMeta, abstractmethod
+from io import BytesIO
 
 class AbstractImage(metaclass=ABCMeta):
     """抽象クラス
@@ -53,4 +53,36 @@ class LocalImage(AbstractImage):
             File: 画像のファイルオブジェクト
         """
         return self.path.open('rb')
+
+class RemoteImage(AbstractImage):
+    """URLで指定しネットから画像を取得するクラス
+    Args:
+    Attributes:
+        url (str): 画像のURL文字列
+    """
+    def __init__(self, url) -> None:
+        self.__url = url
+
+    @property
+    def url(self):
+        return self.__url
+
+    @url.setter
+    def url(self, url) -> None:
+        self.__url = url
+
+    def get_image(self) -> BinaryIO:
+        """画像のファイルをURLから取得してそのFileオブジェクトを返す。
+        Returns:
+            BinaryIO: 画像のファイルオブジェクト
+        """
+        try:
+            headers = {
+                'User-Agent': 'PythonLoader'
+            }
+            res = requests.get(self.url, headers=headers)
+            res.raise_for_status()
+        except requests.exceptions.RequestException as ex:
+            raise ex
+        return BytesIO(res.content)
 

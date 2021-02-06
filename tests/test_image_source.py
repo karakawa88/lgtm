@@ -4,8 +4,9 @@ from typing import Sequence, Iterable, List, Tuple
 from typing import Dict
 from typing import TypeVar, Generic, NewType, Type
 
+import requests
 import unittest
-from lgtm.image_source import LocalImage
+from lgtm.image_source import LocalImage, RemoteImage
 
 class LocalImageTest(unittest.TestCase):
     def test_local_image_file_not_found(self):
@@ -30,3 +31,22 @@ class LocalImageTest(unittest.TestCase):
         result = imgfp.read()
         self.assertEqual(result, image_data)
 
+class RemoteImageTest(unittest.TestCase):
+    def test_remote_image_get(self):
+        with open('tests/data/1511881055.jpg', 'rb') as fp:
+            test_img = fp.read()
+        url = 'https://animekabegami.com/download?id=1511881055&width=1920&height=1080'
+        rimage = RemoteImage(url)
+        fp = rimage.get_image()
+        img = fp.read()
+        self.assertEqual(test_img, img)
+        
+    def test_remote_image_invalid_url(self):
+#         with self.assertRaises(requests.exceptions.RequestException):
+        with self.assertRaises(requests.exceptions.RequestException):
+            url = 'https://hogehoge.com/hogehoge.jpg'
+            rimage = RemoteImage(url)
+            fp = rimage.get_image()
+
+
+    
