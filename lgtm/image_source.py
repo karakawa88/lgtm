@@ -60,15 +60,15 @@ class RemoteImage(AbstractImage):
     Attributes:
         url (str): 画像のURL文字列
     """
-    def __init__(self, url) -> None:
+    def __init__(self, url: str) -> None:
         self.__url = url
 
     @property
-    def url(self):
+    def url(self) -> str:
         return self.__url
 
     @url.setter
-    def url(self, url) -> None:
+    def url(self, url: str) -> None:
         self.__url = url
 
     def get_image(self) -> BinaryIO:
