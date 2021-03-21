@@ -17,7 +17,7 @@ MAX_RATIO = 0.8
 #フォントの格納先のパスは実行環境に合わせて変更する
 # FONT_NAME = '/Library/Fonts/Charter.ttc'
 # FONT_NAME = '/Library/Fonts/Times New Roman.ttf'
-FONT_NAME = '/Library/Fonts/SourceHanSerifJP-Medium.otf'
+FONT_NAME = '/usr/local/share/fonts/TakaoMincho.ttf'
 # テキストの色
 FONT_COLOR_WHITE = (0, 0, 0, 0)
 # フォントの最大サイズと最小サイズ
