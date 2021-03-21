@@ -1,8 +1,9 @@
+# - image: circleci/python:3.8.5
 version: 2
 jobs:
     setup_dependencies:
         docker:
-            - image: circleci/python:3.8.5
+            - image: kagalpandh/kacpp-pydev
         steps:
             - checkout
             - restore_cache:
@@ -16,7 +17,7 @@ jobs:
                     - "~/.local"
     test:
         docker:
-            - image: circleci/python:3.8.5
+            - image: kagalpandh/kacpp-pydev
         steps:
             - checkout
             - restore_cache:
@@ -26,7 +27,7 @@ jobs:
                     python3 -m unittest discover tests -v
     thint:
         docker:
-            - image: circleci/python:3.8.5
+            - image: kagalpandh/kacpp-pydev
         steps:
             - checkout
             - restore_cache:
@@ -36,7 +37,7 @@ jobs:
                     mypy --config-file=mypy.ini lgtm
     lint:
         docker:
-            - image: circleci/python:3.8.5
+            - image: kagalpandh/kacpp-pydev
         steps:
             - checkout
             - restore_cache:
