@@ -44,7 +44,7 @@ jobs:
                 key: deps-{{ checksum "requirements.txt" }}
             - run:
                 command: |
-                    flake8 --config flake8.ini lgtm
+                    python3 -m flake8 --config flake8.ini lgtm
 workflows:
   version: 2
   all:
