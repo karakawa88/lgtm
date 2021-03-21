@@ -5,4 +5,4 @@ psycopg2>=2.*
 requests>=2.*
 mypy>=0.800
 flake8>=3.*
-
+pyocr>=0.8

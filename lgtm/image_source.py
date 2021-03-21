@@ -1,14 +1,15 @@
+from __future__ import annotations
 from typing import Optional, Union, Any
 from typing import Callable, NoReturn
 from typing import Sequence, Iterable, List, Tuple
 from typing import Dict
 from typing import TypeVar, Generic, NewType, Type
 from typing import IO, TextIO, BinaryIO
-
 import requests
 from pathlib import Path
 from abc import ABCMeta, abstractmethod
 from io import BytesIO
+
 
 class AbstractImage(metaclass=ABCMeta):
     """抽象クラス
@@ -109,4 +110,30 @@ class _LoremFlickr(RemoteImage):
 
 
 KeywordImage = _LoremFlickr
+
+
+# T = TypeVar('T', bound=AbstractImage)
+# T = NewType('T', AbstractImage)
+def get_source_image(src: str) -> Union[LocalImage, RemoteImage, _LoremFlickr]:
+    """引数からURL・ローカルパス・キーワードから画像を取得して返す。
+    Args:
+        src (str): URL・キーワード・ローカルパスのいずれかの文字列
+    Returns:
+        AbstractImage: 画像を取得するオブジェクト
+    """
+    if src.startswith('https://'):
+        return RemoteImage(src)
+    elif Path(src).exists():
+        return LocalImage(src)
+    else:
+        return KeywordImage(src)
+
+def get_image(src: str) -> BinaryIO:
+    """引数からURL・ローカルパス・キーワードから画像を取得して返す。
+    Args:
+        src (str): URL・キーワード・ローカルパスのいずれかの文字列
+    Returns:
+        BinaryIO : 画像を取得するオブジェクト
+    """
+    return get_source_image(src).get_image()
 

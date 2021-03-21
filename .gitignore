@@ -12,4 +12,6 @@ tmp
 *.lock
 sample.py
 git-push.sh
+output.*
+output*
 
