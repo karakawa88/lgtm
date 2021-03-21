@@ -10,7 +10,7 @@ jobs:
                 key: deps-{{ checksum "requirements.txt" }}
             - run:
                 command: |
-                    apt update && apt install fonts-takao 
+                    apt update && apt install -y fonts-takao 
                     mkdir /usr/local/share/fonts
                     ln -s /usr/share/fonts/truetype/takao-mincho/TakaoMincho.ttf  /usr/local/share/fonts/TakaoMincho.ttf  
                     pip install --user -r requirements.txt 
