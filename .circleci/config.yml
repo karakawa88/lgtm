@@ -11,9 +11,7 @@ jobs:
             - run:
                 command: |
                     apt install fonts-takao && mkdir /usr/local/share/fonts
-                command: | 
                     ln -s /usr/share/fonts/truetype/takao-mincho/TakaoMincho.ttf  /usr/local/share/fonts/TakaoMincho.ttf  
-                command: |
                     pip install --user -r requirements.txt 
             - save_cache:
                 key: deps-{{ checksum "requirements.txt" }}
