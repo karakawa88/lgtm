@@ -34,7 +34,7 @@ jobs:
                 key: deps-{{ checksum "requirements.txt" }}
             - run:
                 command: |
-                    mypy --config-file=mypy.ini lgtm
+                    python3 -m mypy --config-file=mypy.ini lgtm
     lint:
         docker:
             - image: kagalpandh/kacpp-pydev
